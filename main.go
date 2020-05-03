@@ -96,8 +96,9 @@ func page_3(w http.ResponseWriter, r *http.Request ){
   	}
 
     vvod := r.PostFormValue("vvod")
-    if vvod == "'><script>alert(document.cookie)</script>" {
-      tmpl, err := template.ParseFiles("templates/page_3_flug.html")
+
+    if vvod == "\"><script>alert(document.cookie)</script>" || vvod == "<script>alert(document.cookie)</script>" || vvod == "'><script>alert(document.cookie)</script>" {
+      tmpl, err := template.ParseFiles("templates/page_3_flug_alert.html")
       if err != nil{
         http.Error(w, err.Error(), 400)
         return
@@ -109,8 +110,8 @@ func page_3(w http.ResponseWriter, r *http.Request ){
       }
     }
 
-    if vvod == "\"><script>alert(document.cookie)</script>" {
-      tmpl, err := template.ParseFiles("templates/page_3_flug.html")
+    if vvod == "\"><script>document.write(document.cookie)</script>" || vvod == "<script>document.write(document.cookie)</script>" || vvod == "'><script>document.write(document.cookie)</script>" {
+      tmpl, err := template.ParseFiles("templates/page_3_flug_document.html")
       if err != nil{
         http.Error(w, err.Error(), 400)
         return
@@ -122,8 +123,8 @@ func page_3(w http.ResponseWriter, r *http.Request ){
       }
     }
 
-    if vvod == "<script>alert(document.cookie)</script>" {
-      tmpl, err := template.ParseFiles("templates/page_3_flug.html")
+    if vvod == "\"><script>console.log(document.cookie)</script>" || vvod == "<script>console.log(document.cookie)</script>" || vvod == "'><script>console.log(document.cookie)</script>" {
+      tmpl, err := template.ParseFiles("templates/page_3_flug_console.html")
       if err != nil{
         http.Error(w, err.Error(), 400)
         return
