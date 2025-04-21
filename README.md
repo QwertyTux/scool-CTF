@@ -1,5 +1,5 @@
 # scool-CTF
-Запуск:
+Run:
 
 sudo apt install golang
 
